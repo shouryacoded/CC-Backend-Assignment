@@ -15,7 +15,7 @@ const generateSecretKey = () => {
 
 if(!process.env.JWT_SECRET){
     const secretKey = generateSecretKey();
-    fs.appendFileSync('.env',`JWT_SECRET=${secretKey}\n`);
+    fs.appendFileSync('.env',`\nJWT_SECRET=${secretKey}\n`);
 }
 
 // Importing .env variables.
