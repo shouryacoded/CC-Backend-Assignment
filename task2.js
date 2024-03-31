@@ -4,6 +4,11 @@ const axios = require('axios');
 const app = express();
 const PORT = 3000;
 
+function getUniqueCategories(data) {
+    const categories = data.map(entry => entry.Category);
+    return [...new Set(categories)]; // Use Set for efficient unique values
+  }
+
 // API endpoint to fetch data from the public API with filtering options
 app.get('/api/data', async (req, res) => {
     try {
@@ -11,6 +16,9 @@ app.get('/api/data', async (req, res) => {
 
         // Make a request to the public API
         const response = await axios.get('https://api.publicapis.org/entries');
+
+        const categories = getUniqueCategories(response.data);
+        console.log('Unique categories:', categories);
 
         // Filter the data based on category and result limit
         let filteredData = response.data.entries;
@@ -21,7 +29,7 @@ app.get('/api/data', async (req, res) => {
         } else if (limit && limit <= 0) {
             res.status(400).json({ error: 'Invalid limit value. Limit must be a positive integer' });
         }
-        
+
         if (category) {
             filteredData = filteredData.filter(entry => entry.Category === category);
         }
