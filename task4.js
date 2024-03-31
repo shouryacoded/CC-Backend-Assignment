@@ -31,10 +31,6 @@ const generateToken = (user) => {
 // API endpoint to authenticate and get JWT token
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
-
-    // Perform authentication, e.g., check username and password
-
-    // For demonstration purposes, let's assume authentication is successful
     const user = { username: username };
     const token = generateToken(user);
 
