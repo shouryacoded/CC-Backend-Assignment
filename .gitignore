@@ -12,7 +12,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 #Ignoring files added for testing elements of different tasks
 test.js
-
+swagger.js
+collections.js
+results.js
 
 # Runtime data
 pids
